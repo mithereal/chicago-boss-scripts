@@ -30,10 +30,20 @@ function help()
     echo " -d the projects base directory"
 }
 
+
+-compile(export_all).
+ 
+%% @doc show a "Hello World" message
+index('GET', []) ->
+    {output, "Hello World"}.
+    
 function create(){
 	init
-	echo "-module($NAME, [$PROPLIST])." > $BASEDIR$MODELDIR$FILENAME
+	echo "-module($NAME_controller, [Req])." > $BASEDIR$MODELDIR$FILENAME
     echo "-compile(export_all)." >> $BASEDIR$MODELDIR$FILENAME
+    echo "" >> $BASEDIR$MODELDIR$FILENAME
+    echo "index('GET', []) ->" >> $BASEDIR$MODELDIR$FILENAME
+    echo "    {output, \"Hello World\"}." >> $BASEDIR$MODELDIR$FILENAME
 
 }
 
