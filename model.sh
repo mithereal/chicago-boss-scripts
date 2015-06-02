@@ -27,14 +27,14 @@ function help()
 }
 
 function create(){
-	init
+	start
 	echo "-module($NAME, [$PROPLIST])." > $BASEDIR$MODELDIR$FILENAME
     echo "-compile(export_all)." >> $BASEDIR$MODELDIR$FILENAME
 
 }
 
 
-function init()
+function start()
 {
     if [ -z "$BASEDIR" ]
 then
