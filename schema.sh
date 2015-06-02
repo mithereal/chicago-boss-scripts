@@ -30,33 +30,34 @@ function help()
 
 function start()
 {
+	echo "start"
     if [ -z "$BASEDIR" ]
 then
   BASEDIR="./"
 
 fi
-
+echo ${BASEDIR}
 if [ ! -d "$BASEDIR$MODELDIR" ]
 	then
 	echo "$BASEDIR is not a Chicagoboss Project" 
 	exit
     fi
     
-if [ ! -z "$USERNAME" ]
-	then
-	USERNAME=($(grep "^\s.*{db_host,.\".*\"}" boss.config))
-    fi
+#if [ ! -z "$USERNAME" ]
+	#then
+	#USERNAME=($(grep "^\s.*{db_host,.\".*\"}" boss.config))
+    #fi
     
-if [ ! -z "$USERNAME" ]
+if [ ! -z $USERNAME ]
 	then
 	echo "enter your username"
 	read USERNAME
     fi
     
-if [ ! -z "$PASSWORD" ]
-	then
-	 PASSWORD=($(grep "^\s.*{db_password,.\".*\"}" boss.config))
-    fi
+#if [ ! -z "$PASSWORD" ]
+	#then
+	 #PASSWORD=($(grep "^\s.*{db_password,.\".*\"}" boss.config))
+    #fi
     
 if [ ! -z "$PASSWORD" ]
 	then
@@ -64,10 +65,10 @@ if [ ! -z "$PASSWORD" ]
 	read PASSWORD
     fi
     
-if [ ! -z "$DATABASE" ]
-	then
-	 DATABASE=($(grep "^\s.*{db_database,.\".*\"}" boss.config))
-    fi
+#if [ ! -z "$DATABASE" ]
+	#then
+	 #DATABASE=($(grep "^\s.*{db_database,.\".*\"}" boss.config))
+    #fi
     
 if [ ! -z "$DATABASE" ]
 	then
@@ -77,7 +78,7 @@ fi
 
 }
 
-while getopts ":?:p:n:d" opt; do
+while getopts ":?:p:n:d:t" opt; do
     case $opt in
     
 		-d)
@@ -104,8 +105,8 @@ start
     
 if [ ! -z "$TABLE" ]
 	then
-	#results=( $(mysql --user="$USERNAME" --password="$PASSWORD" --database="$DATABASE" --execute="select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = '$DATABASE'") )
-	#echo results
+	results=( $(mysql --user="$USERNAME" --password="$PASSWORD" --database="$DATABASE" --execute="select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = '$DATABASE'") )
+	echo results
 	#command="./model.sh -n $TABLE -p $PROPLIST"
 	#bash $command
 	
