@@ -21,10 +21,10 @@ PROPLIST=""
 while getopts ":?:p:n:d" opt; do
     case $opt in
     
-		d)
+		-d)
 		DATABASE=$OPTARG
             ;;
-		n)
+		-n)
 		USERNAME=$OPTARG
             ;;
        -p)
@@ -39,6 +39,7 @@ exit 0
             ;;
     esac
 done
+
 
 if [ ! -z "$USERNAME" ]
 	then
@@ -63,13 +64,13 @@ if [ ! -z "$DATABASE" ]
     
 if [ ! -z "$TABLE" ]
 	then
-	echo "enter your table"
-	read TABLE
-	exit
+	results=( $(mysql --user="$USERNAME" --password="$PASSWORD" --database="$DATABASE" --execute="select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = '$DATABASE'") )
+	else
+	results=( $(mysql --user="$USERNAME" --password="$PASSWORD" --database="$DATABASE" --execute="select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='$TABLE' && TABLE_SCHEMA = '$DATABASE'") )
+
     fi
     
 
-results=( $(mysql --user="$USERNAME" --password="$PASSWORD" --database="$DATABASE" --execute="select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='$TABLE' && TABLE_SCHEMA = '$DATABASE'") )
 
 
 cnt=${#results[@]}
@@ -91,14 +92,14 @@ do
 done
 
 command="./model.sh -n $table -p $PROPLIST"
-
 bash $command
 
 function help()
 {
-    echo "Chicago Boss Model Tool by Jason Clark <mithereal@gmail.com>"
+    echo "Chicago Boss Schema Generator by Jason Clark <mithereal@gmail.com>"
+    echo "Currently this only supports mysql"
     echo " -u Username"
     echo " -p Password"
     echo " -d Main database"
-    echo " -t Table to pull schema from"
+    echo " -t Table to pull schema from (optional defaults to entire table)"
 }

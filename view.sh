@@ -15,13 +15,13 @@
 #limitations under the License.
 
 VERSION=0.8.15
-MODELDIR="src/controller/"
+MODELDIR="src/view/"
 
 
 function help()
 {
     echo ""
-    echo "Chicago Boss Controller Generator by Jason Clark <mithereal@gmail.com>"
+    echo "Chicago Boss View Generator by Jason Clark <mithereal@gmail.com>"
     echo "\n"
     echo "-n controller name"
     echo "\n"
