@@ -33,15 +33,13 @@ function help()
 
 -compile(export_all).
  
-%% @doc show a "Hello World" message
-index('GET', []) ->
-    {output, "Hello World"}.
     
 function create(){
 	init
 	echo "-module($NAME_controller, [Req])." > $BASEDIR$MODELDIR$FILENAME
     echo "-compile(export_all)." >> $BASEDIR$MODELDIR$FILENAME
     echo "" >> $BASEDIR$MODELDIR$FILENAME
+    echo "%% @doc show a \"Hello World\" message" >> $BASEDIR$MODELDIR$FILENAME
     echo "index('GET', []) ->" >> $BASEDIR$MODELDIR$FILENAME
     echo "    {output, \"Hello World\"}." >> $BASEDIR$MODELDIR$FILENAME
 

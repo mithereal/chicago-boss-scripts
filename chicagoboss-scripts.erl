@@ -1,2 +1,0 @@
--module(, []).
--compile(export_all).

@@ -20,13 +20,9 @@ MODELDIR="src/model/"
 
 function help()
 {
-    echo ""
     echo "Chicago Boss Model Tool by Jason Clark <mithereal@gmail.com>"
-    echo "\n"
-    echo "-n model name"
-    echo "\n"
+    echo " -n model name"
     echo " -p property1,property2,property3"
-    echo "\n"
     echo " -d the projects base directory"
 }
 
