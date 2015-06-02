@@ -36,41 +36,41 @@ then
   BASEDIR="./"
 
 fi
-echo ${BASEDIR}
+
 if [ ! -d "$BASEDIR$MODELDIR" ]
 	then
 	echo "$BASEDIR is not a Chicagoboss Project" 
 	exit
     fi
     
-#if [ ! -z "$USERNAME" ]
+#if [ -z "$USERNAME" ]
 	#then
-	#USERNAME=($(grep "^\s.*{db_host,.\".*\"}" boss.config))
+	#USERNAME=($(grep -oP "^\s.*{db_host,.\".*\"}" boss.config))
     #fi
     
-if [ ! -z $USERNAME ]
+if [ -z $USERNAME ]
 	then
 	echo "enter your username"
 	read USERNAME
     fi
     
-#if [ ! -z "$PASSWORD" ]
+#if [ -z "$PASSWORD" ]
 	#then
-	 #PASSWORD=($(grep "^\s.*{db_password,.\".*\"}" boss.config))
+	 #PASSWORD=($(grep -oP "^\s.*{db_password,.\".*\"}" boss.config))
     #fi
     
-if [ ! -z "$PASSWORD" ]
+if [ -z "$PASSWORD" ]
 	then
 	echo "enter your password"
-	read PASSWORD
+	read -s PASSWORD
     fi
     
-#if [ ! -z "$DATABASE" ]
+#if [ -z "$DATABASE" ]
 	#then
-	 #DATABASE=($(grep "^\s.*{db_database,.\".*\"}" boss.config))
+	 #DATABASE=($(grep -oP "^\s.*{db_database,.\".*\"}" boss.config))
     #fi
     
-if [ ! -z "$DATABASE" ]
+if [ -z "$DATABASE" ]
 	then
 	echo "enter your database"
 	read DATABASE
